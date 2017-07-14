@@ -46,3 +46,52 @@ complete -W "NSGlobalDomain" defaults;
 
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+
+
+export EDITOR=/usr/local/bin/emacs
+export PYTHONPATH=$PYTHONPATH:/Users/andrew/research/brio:/Users/andrew/research/disparity:/Users/andrew/lib/LAHMC/python:/Users/andrew/research/MJHMC:/Users/andrew/lib/NUTS:/Users/andrew/research/hdnet:/Users/andrew/lib/tensorflow/tensorflow:/Users/andrew/research/ct_microscopy:/Users/andrew/projects/lstm_redditor:/Users/andrew/projects/arbitrary:/Users/andrew/research/division_detection:/Users/andrew/research/latentdendrite
+
+
+alias 'll=ls -l'
+alias 'matlab=/Applications/MATLAB_R2015a.app/bin/matlab -nodisplay -r'
+
+# just so I never accidentally run the wrong one
+alias 'ipython=ipython3'
+
+# Starts jupyter on the remote server and starts a tunnel on local machine
+
+# Usage: jupyter-remote remote-name@remote-server
+#     > By default, it uses port 8332 on the remote machine and 8333 on the local machine.
+#     > Optionally, the environment and ports can be specified as:
+#                   jupyter-remote remote-name@remote-server environment local-port remote-port
+
+jupyter-remote () {
+    printf '\nSSH connection : %s\n'          $1
+    printf 'Environment    : %s\n'            ${2-tensorflow}
+    printf 'Tunnel         : %d --> %d\n\n'   ${4-8334} ${3-8335}
+
+    ssh $1 source /groups/turaga/home/castonguayp/anaconda3/bin/activate ${2-tensorflow} > /dev/null 2>&1
+    printf '\n'
+    ssh $1 jupyter notebook --no-browser --port=${3-8335} &
+    printf '\n'
+    ssh -N -f -L localhost:${3-8334}:localhost:${4-8335} $1
+    printf '\n'
+
+    read -n 1 -s                 # Wait for keypress to remember it is still open
+    printf 'Killing local listener:  '
+    fuser -n tcp -k ${3-8334} >1 # Kills listener on local computer
+}
+
+# added by Anaconda3 4.0.0 installer
+export PATH="/Users/andrew/anaconda/bin:$PATH"
+
+export TF_ENV="/Users/andrew/anaconda/envs/tensorflow/lib/python3.5/site-package"
+
+# tensorboard alias, obviously
+alias 'tensorboard=python ~/anaconda/envs/tensorflow/lib/python3.5/site-packages/tensorflow/tensorboard/tensorboard.py'
+
+ssh-tunnel () {
+    ssh -N -f -L localhost:${2-6007}:localhost:${3-6006} $1
+}
+source /Users/andrew/anaconda/bin/activate.sh
+n
