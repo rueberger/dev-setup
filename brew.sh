@@ -75,6 +75,7 @@ brew install sfnt2woff
 brew install sfnt2woff-zopfli
 brew install woff2
 
+
 # # Install some CTF tools; see https://github.com/ctfs/write-ups.
 # brew install aircrack-ng
 # brew install bfg
@@ -126,6 +127,12 @@ brew install zopfli
 brew install pkg-config libffi
 brew install pandoc
 
+# Install spacemacs
+brew tap d12frosted/emacs-plus
+brew install emacs-plus
+brew linkapps emacs-plus
+git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+
 # Lxml and Libxslt
 brew install libxml2
 brew install libxslt
@@ -165,7 +172,9 @@ brew cask install --appdir="/Applications" 1password
 #brew cask install --appdir="/Applications" inkscape
 
 #Remove comment to install LaTeX distribution MacTeX
-#brew cask install --appdir="/Applications" mactex
+brew cask install --appdir="/Applications" mactex
+
+
 
 # Install Docker, which requires virtualbox
 brew install docker
