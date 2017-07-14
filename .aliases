@@ -6,14 +6,18 @@ alias .....="cd ../../../.."
 alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
+alias 'll=ls -l'
+alias 'matlab=/Applications/MATLAB_R2015a.app/bin/matlab -nodisplay -r'
+
+# just so I never accidentally run the wrong one
+alias 'ipython=ipython3'
+
+
 # Shortcuts
-alias d="cd ~/Documents/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
-alias p="cd ~/projects"
-alias g="git"
-alias h="history"
-alias j="jobs"
+alias r="cd ~/research"
+alias nrs="cd /nrs/turaga/bergera"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`

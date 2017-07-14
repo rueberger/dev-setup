@@ -51,13 +51,6 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 export EDITOR=/usr/local/bin/emacs
 export PYTHONPATH=$PYTHONPATH:/Users/andrew/research/brio:/Users/andrew/research/disparity:/Users/andrew/lib/LAHMC/python:/Users/andrew/research/MJHMC:/Users/andrew/lib/NUTS:/Users/andrew/research/hdnet:/Users/andrew/lib/tensorflow/tensorflow:/Users/andrew/research/ct_microscopy:/Users/andrew/projects/lstm_redditor:/Users/andrew/projects/arbitrary:/Users/andrew/research/division_detection:/Users/andrew/research/latentdendrite
 
-
-alias 'll=ls -l'
-alias 'matlab=/Applications/MATLAB_R2015a.app/bin/matlab -nodisplay -r'
-
-# just so I never accidentally run the wrong one
-alias 'ipython=ipython3'
-
 # Starts jupyter on the remote server and starts a tunnel on local machine
 
 # Usage: jupyter-remote remote-name@remote-server
