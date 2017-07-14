@@ -166,6 +166,7 @@ brew cask install --appdir="/Applications" skype
 brew cask install --appdir="/Applications" slack
 brew cask install --appdir="/Applications" dropbox
 brew cask install --appdir="/Applications" gimp
+brew cask install --appdir="/Applications" telegram
 #brew cask install --appdir="/Applications" inkscape
 
 #Remove comment to install LaTeX distribution MacTeX
