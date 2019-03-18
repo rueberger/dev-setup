@@ -1,5 +1,6 @@
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH";
+export BASH="/usr/local/bin/bash";
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
@@ -49,7 +50,7 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 
 
 export EDITOR=/usr/local/bin/emacs
-export PYTHONPATH=$PYTHONPATH:/Users/andrew/research/brio:/Users/andrew/research/disparity:/Users/andrew/lib/LAHMC/python:/Users/andrew/research/MJHMC:/Users/andrew/lib/NUTS:/Users/andrew/research/hdnet:/Users/andrew/lib/tensorflow/tensorflow:/Users/andrew/research/ct_microscopy:/Users/andrew/projects/lstm_redditor:/Users/andrew/projects/arbitrary:/Users/andrew/research/division_detection:/Users/andrew/research/latentdendrite
+#export PYTHONPATH=$PYTHONPATH:/Users/andrew2/research/brio:/Users/andrew2/research/disparity:/Users/andrew2/lib/LAHMC/python:/Users/andrew2/research/MJHMC:/Users/andrew2/lib/NUTS:/Users/andrew2/research/hdnet:/Users/andrew2/lib/tensorflow/tensorflow:/Users/andrew2/research/ct_microscopy:/Users/andrew2/projects/lstm_redditor:/Users/andrew2/projects/arbitrary:/Users/andrew2/research/division_detection:/Users/andrew2/research/latentdendrite
 
 # Starts jupyter on the remote server and starts a tunnel on local machine
 
@@ -75,10 +76,8 @@ jupyter-remote () {
     fuser -n tcp -k ${3-8334} >1 # Kills listener on local computer
 }
 
-# added by Anaconda3 4.0.0 installer
-export PATH="/Users/andrew/anaconda/bin:$PATH"
 
-export TF_ENV="/Users/andrew/anaconda/envs/tensorflow/lib/python3.5/site-package"
+export TF_ENV="/Users/andrew2/anaconda/envs/tensorflow/lib/python3.5/site-package"
 
 # tensorboard alias, obviously
 alias 'tensorboard=python ~/anaconda/envs/tensorflow/lib/python3.5/site-packages/tensorflow/tensorboard/tensorboard.py'
@@ -86,5 +85,28 @@ alias 'tensorboard=python ~/anaconda/envs/tensorflow/lib/python3.5/site-packages
 ssh-tunnel () {
     ssh -N -f -L localhost:${2-6007}:localhost:${3-6006} $1
 }
-source /Users/andrew/anaconda/bin/activate.sh
-n
+#source /Users/andrew2/anaconda/bin/activate.sh
+
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent.ssh"
+gpgconf --launch gpg-agent
+# added by Miniconda3 installer
+export PATH="/Users/andrew2/miniconda3/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/andrew2/google-cloud-sdk/path.bash.inc' ]; then source '/Users/andrew2/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/andrew2/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/andrew2/google-cloud-sdk/completion.bash.inc'; fi
+
+# set up bash completion (for docker namely)
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
+
+
+# add flutter path
+export PATH=$PATH:/Users/andrew2/src/flutter/bin
+
+eval "$(pyenv init -)"
+export PYENV_VERSION=3.7.1
